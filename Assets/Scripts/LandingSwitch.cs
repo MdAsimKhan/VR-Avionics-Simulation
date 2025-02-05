@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Attached to the trigger colllider GO of the landing switch's grab handle
+/// </summary>
 public class LandingSwitch : MonoBehaviour
 {
     public Animator animator;

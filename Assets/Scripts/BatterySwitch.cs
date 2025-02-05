@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Attached to the trigger collider GO that is the child of the Battery Switch's grab handle
+/// </summary>
 public class BatterySwitch : MonoBehaviour
 {
     public AudioClip onSound;
@@ -8,8 +11,8 @@ public class BatterySwitch : MonoBehaviour
     public AudioClip warningSound;
     public float maxUpTime = 5f;
     public float warningDuration = 2f;
-    public GameObject handle;
-    public GameObject canvas;
+    public GameObject handle; // Battery switch grab handle
+    public GameObject warningCanvas;
     public LEDSequence LEDSequence;
     public LEDGlow LEDGlow;
 
@@ -23,7 +26,7 @@ public class BatterySwitch : MonoBehaviour
             isOn = true;
             upTime = 0f; // Reset uptime when turned on
             LEDSequence.StartUpSequence(); // Blink LEDs
-            StartCoroutine(CheckBattery());
+            StartCoroutine(CheckBattery()); // Starting warning sequence check
             AudioManager.Instance.PlayClip(onSound);
         }
         else if (other.CompareTag("Off"))
@@ -42,7 +45,7 @@ public class BatterySwitch : MonoBehaviour
             upTime += Time.deltaTime;
             if (upTime >= maxUpTime)
             {
-                canvas.SetActive(true);
+                warningCanvas.SetActive(true);
                 LEDGlow.StartGlow();
                 AudioManager.Instance.PlayClip(warningSound);
                 yield return new WaitForSeconds(warningDuration);
@@ -57,7 +60,7 @@ public class BatterySwitch : MonoBehaviour
     {
         LEDGlow.StopGlow();
         isOn = false;
-        canvas.SetActive(false);
+        warningCanvas.SetActive(false);
         AudioManager.Instance.PlayClip(offSound);
         handle.transform.rotation = Quaternion.Euler(0f, 0f, -90f); // rotate the handle back to off (depends on the rotn of parent GO or the angles in runtime)
         LEDSequence.StopSequence(); // Turn off LEDs

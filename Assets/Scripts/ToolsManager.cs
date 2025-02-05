@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Main code that handles all tools with the UI
+/// </summary>
 public class ToolsManager : MonoBehaviour
 {
 
@@ -17,6 +20,7 @@ public class ToolsManager : MonoBehaviour
     private Slider heading;
     private TMP_Text altitudeText;
 
+    // Public function to set UI referneced for hand tracked UI
     public void SetHandElements()
     {
         altitude = handAltitude;
@@ -25,6 +29,7 @@ public class ToolsManager : MonoBehaviour
         FixListeners();
     }
 
+    // Public function to set UI referneced for controller tracked UI
     public void SetControllerElements()
     {
         altitude = controllerAltitude;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LEDSequence : MonoBehaviour
 {
-    public Renderer[] ledRenderers; // Assign 3 GameObjects with materials
+    public Renderer[] ledRenderers;
     public float blinkDuration = 3f; // Blinking duration
     public float maxAlpha = 1f; // Maximum glow intensity
     private Material[] ledMaterials;
@@ -17,10 +17,11 @@ public class LEDSequence : MonoBehaviour
         for (int i = 0; i < ledRenderers.Length; i++)
         {
             ledMaterials[i] = ledRenderers[i].material;
-            SetAlpha(ledMaterials[i], 0f); // Set all LEDs invisible at start
+            SetAlpha(ledMaterials[i], 0f); // Turn off all LEDs at start
         }
     }
 
+    // Public funtion to start the blinking sequence
     public void StartUpSequence()
     {
         if (!isRunning)
@@ -30,6 +31,7 @@ public class LEDSequence : MonoBehaviour
         }
     }
 
+    // Public function to stop the blinking sequence
     public void StopSequence()
     {
         StopAllCoroutines();
@@ -65,7 +67,7 @@ public class LEDSequence : MonoBehaviour
 
     private void SetAlpha(Material mat, float alpha)
     {
-        if (mat != null) // Prevent errors if material is missing
+        if (mat != null) // Null check
         {
             Color color = mat.color;
             color.a = alpha;

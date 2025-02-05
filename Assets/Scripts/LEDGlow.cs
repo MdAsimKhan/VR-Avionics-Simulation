@@ -13,7 +13,7 @@ public class LEDGlow : MonoBehaviour
 
     void Start()
     {
-        minAlpha /= 255;
+        minAlpha /= 255; // Convert from 0-255 to 0-1
         maxAlpha /= 255;
         ledMaterial = ledRenderer.material;
     }

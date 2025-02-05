@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
+/// <summary>
+/// Attached to the XR Rig
+/// </summary>
 public class CamViewSwitch : MonoBehaviour
 {
     public Transform fpv;
@@ -13,8 +16,9 @@ public class CamViewSwitch : MonoBehaviour
     {
         isFPV = !isFPV;
         gameObject.transform.position = isFPV ? fpv.position : tpv.position;
-        mainCam.GetComponent<TrackedPoseDriver>().enabled = false;
-        mainCam.transform.rotation = isFPV ? fpv.rotation : tpv.rotation;
-        mainCam.GetComponent<TrackedPoseDriver>().enabled = true;
+        // Not working due to TrackedPoseDriver overriding the rotation
+        //mainCam.GetComponent<TrackedPoseDriver>().enabled = false;
+        //mainCam.transform.rotation = isFPV ? fpv.rotation : tpv.rotation;
+        //mainCam.GetComponent<TrackedPoseDriver>().enabled = true;
     }
 }
