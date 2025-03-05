@@ -1,5 +1,4 @@
-# VR-Avionics
- Interview Assignment for KS Smart Solutions Pvt Ltd
+# VR Avionics Simulations
 
 
 # Project Overview
